@@ -14,17 +14,17 @@ manga_collection = db['manga']
 app = Flask(__name__)
 
 
-@app.route('/recommendations', methods=['POST'])
-def recommendations():
-    try:
-        manga_ids = request.json.get('manga_ids', [])
-        if not isinstance(manga_ids, list):
-            return jsonify({"error": "manga_ids must be an array"}), 400
+# @app.route('/recommendations', methods=['POST'])
+# def recommendations():
+#     try:
+#         manga_ids = request.json.get('manga_ids', [])
+#         if not isinstance(manga_ids, list):
+#             return jsonify({"error": "manga_ids must be an array"}), 400
 
-        recommended_manga = get_recommendations(manga_ids)
-        return jsonify(recommended_manga)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+#         recommended_manga = get_recommendations(manga_ids)
+#         return jsonify(recommended_manga)
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
 
 
 
