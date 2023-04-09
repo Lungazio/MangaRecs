@@ -28,12 +28,15 @@ for manga in manga_collection.find():
     genre_vector = [1 if genre in manga["genres"] else 0 for genre in all_genres]
 
     preprocessed_manga = {
-    "id": manga["id"],
-    "genres": genre_vector,
-    "popularity": manga["popularity"],
-    "meanScore": manga["mean_score"],
-    "averageScore": manga.get("average_score", 0),  # Set to 0 if not present
-    "author": manga["author"]
+        "id": manga["id"],
+        "genres": genre_vector,
+        "popularity": manga["popularity"],
+        "meanScore": manga["mean_score"],
+        "averageScore": manga.get("average_score", 0),  # Set to 0 if not present
+        "author": manga["author"],
+        "start_date_year": manga["release"],
+        "favourites": manga["favourites"],
+        "countryOfOrigin": manga["countryOfOrigin"]
     }
 
     preprocessed_data.append(preprocessed_manga)

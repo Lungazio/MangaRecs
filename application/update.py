@@ -46,6 +46,11 @@ def get_manga_query():
                     }
                 }
                 description(asHtml: false)
+                startDate {
+                    year
+                }
+                favourites
+                countryOfOrigin
             }
         }
     }
@@ -99,11 +104,14 @@ def fetch_and_store_all_manga_data():
                 'id': manga['id'],
                 'title': manga['title'],
                 'genres': manga['genres'],
-                'mean_score':manga['meanScore'],
+                'mean_score': manga['meanScore'],
                 'average_score': manga['averageScore'],
                 'popularity': manga['popularity'],
                 'author': staff_id,
-                'description': manga['description']
+                'description': manga['description'],
+                'release': manga['startDate']['year'],
+                'favourites': manga['favourites'],
+                'countryOfOrigin': manga['countryOfOrigin']
             }
 
             # Only append the manga_document if it has a description and mean score
