@@ -8,10 +8,14 @@ import os
 from collections import Counter
 from itertools import combinations
 import pickle
+from dotenv import load_dotenv
 
+
+# Load the environment variables from the .env file
+load_dotenv()
 
 ca = certifi.where()
-MONGODB_CONNECTION_STRING = "mongodb+srv://Lungazio:jul02011@cluster0.xwpuv5b.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_CONNECTION_STRING = os.environ.get('MONGODB_CONNECTION_STRING')
 client = MongoClient(MONGODB_CONNECTION_STRING, tlsCAFile=ca)
 db = client['manga_database']
 manga_collection = db['manga']

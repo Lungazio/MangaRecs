@@ -6,17 +6,22 @@ from pymongo import MongoClient
 import certifi
 import os
 from collections import Counter
+from dotenv import load_dotenv
+
 
 # Read unique countries from unique_countries.txt
 with open("unique_countries.txt", "r") as file:
     all_countries = [line.strip() for line in file.readlines()]
+# Load the environment variables from the .env file
 
-# Connect to MongoDB
+load_dotenv()
+
 ca = certifi.where()
-MONGODB_CONNECTION_STRING = "mongodb+srv://Lungazio:jul02011@cluster0.xwpuv5b.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_CONNECTION_STRING = os.environ.get('MONGODB_CONNECTION_STRING')
 client = MongoClient(MONGODB_CONNECTION_STRING, tlsCAFile=ca)
 db = client['manga_database']
-preprocessed_manga_collection = db['preprocessed_manga']
+manga_collection = db['manga']
+preprocessed_data = db['preprocessed_manga']
 
 # Set the path to save/load the feature matrix
 FEATURE_MATRIX_PATH = 'feature_matrix.npy'

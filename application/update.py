@@ -3,13 +3,19 @@ import time
 import certifi
 import requests
 from flask import Flask
+from dotenv import load_dotenv
+import os
 
+
+# Load the environment variables from the .env file
+load_dotenv()
 
 ca = certifi.where()
-MONGODB_CONNECTION_STRING = "mongodb+srv://Lungazio:jul02011@cluster0.xwpuv5b.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_CONNECTION_STRING = os.environ.get('MONGODB_CONNECTION_STRING')
 client = MongoClient(MONGODB_CONNECTION_STRING, tlsCAFile=ca)
 db = client['manga_database']
 manga_collection = db['manga']
+preprocessed_data = db['preprocessed_manga']
 
 ANILIST_API_URL = "https://graphql.anilist.co"
 

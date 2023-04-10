@@ -1,12 +1,18 @@
 from pymongo import MongoClient
 import certifi
+from dotenv import load_dotenv
+import os
 
-# Connect to MongoDB
-print("Connecting to MongoDB...")
+
+# Load the environment variables from the .env file
+load_dotenv()
+
 ca = certifi.where()
-MONGODB_CONNECTION_STRING = "mongodb+srv://Lungazio:jul02011@cluster0.xwpuv5b.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_CONNECTION_STRING = os.environ.get('MONGODB_CONNECTION_STRING')
 client = MongoClient(MONGODB_CONNECTION_STRING, tlsCAFile=ca)
-print("Connected to MongoDB.")
+db = client['manga_database']
+manga_collection = db['manga']
+preprocessed_data = db['preprocessed_manga']
 
 # Access the manga collection
 print("Accessing the manga collection...")
