@@ -74,9 +74,9 @@ def custom_similarity(x_index, y_index, feature_matrix, input_genres, input_auth
     author_weight = 0.05
     genre_weight = 0.45
     rating_weight = 0.05
-    popularity_weight = 0.1
+    popularity_weight = 0.05
     favourites_weight = 0.05
-    country_weight = 0.05
+    country_weight = 0.1
     release_year_weight = 0.25  # Add a weight for the release year
     
     n_genres = len(genre_weights)
@@ -194,6 +194,6 @@ def get_combinations():
             file.write(f"Output: {output}\n\n")
 
 
-input_manga_ids = [56769,72451, 87395 ] 
-rec = recommend_manga(input_manga_ids)
-print(get_manga_names(rec))
+# input_manga_ids = [56769,72451, 87395 ] 
+# rec = recommend_manga(input_manga_ids)
+# print(get_manga_names(rec))
