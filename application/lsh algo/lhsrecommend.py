@@ -10,13 +10,19 @@ from collections import Counter
 import pickle
 from lsh import find_candidates
 import random
+from dotenv import load_dotenv
 
+
+# Load the environment variables from the .env file
+load_dotenv()
 
 ca = certifi.where()
-MONGODB_CONNECTION_STRING = "mongodb+srv://Lungazio:jul02011@cluster0.xwpuv5b.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_CONNECTION_STRING = os.environ.get('MONGODB_CONNECTION_STRING')
 client = MongoClient(MONGODB_CONNECTION_STRING, tlsCAFile=ca)
 db = client['manga_database']
-preprocessed_manga_collection = db['preprocessed_manga']
+manga_collection = db['manga']
+preprocessed_data = db['preprocessed_manga']
+
 
 genre_weights = {
     "Slice of Life": 1.0,
