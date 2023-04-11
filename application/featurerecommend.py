@@ -117,7 +117,7 @@ def custom_similarity(x_index, y_index, feature_matrix, input_genres, input_auth
 
 def recommend_manga(manga_ids, k=10, subset_size=30):
     # Get input manga data
-    input_manga_data = [manga for manga in preprocessed_manga_collection.find({"id": {"$in": manga_ids}})]
+    input_manga_data = [manga for manga in preprocessed_data.find({"id": {"$in": manga_ids}})]
 
     # Compute genre and author frequencies in the input manga
     input_genres = Counter([genre for manga in input_manga_data for genre in manga['genres']])

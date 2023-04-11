@@ -17,7 +17,6 @@ preprocessed_data = db['preprocessed_manga']
 
 
 
-
 genre_weights = {
     "Slice of Life": 1.0,
     "Sports": 1.0,
